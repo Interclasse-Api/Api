@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace Api.Business
 {
-    public class Questão3Business
+    public class Questao3Business
     {
-        Database.Questão3Database ctx = new Database.Questão3Database();
+        Database.Questao3Database db = new Database.Questao3Database();
         public bool ConsultarDiretorPorNome(string nome)
         {
-            Models.TbDiretor diretor = ctx.ConsultarDiretorPorNome(nome);
+            Models.TbDiretor diretor = db.ConsultarDiretorPorNome(nome);
             if (diretor == null)
                 return false;
             else 
@@ -21,7 +21,7 @@ namespace Api.Business
             if(diretor == string.Empty)
                 throw new ArgumentException("Nome Obrigatório.");
 
-            return ctx.Invalidar(diretor);
+            return db.Invalidar(diretor);
         }
 
     }

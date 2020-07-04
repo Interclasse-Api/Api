@@ -1,12 +1,12 @@
 using System.Linq;
 using System.Collections.Generic;
 
-
+ 
 namespace Api.Business
 {
-    public class Questão4Business
+    public class Questao4Business
     {
-        Database.Questão4Database db = new Database.Questão4Database();   
+        Database.Questao4Database db = new Database.Questao4Database();   
         public bool ValidarPersonagens(string nomeFilme, List<string> personagens)
         {
             Models.TbFilme filme = db.ConsultarFilmePorNome(nomeFilme);

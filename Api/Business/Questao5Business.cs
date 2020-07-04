@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-
+ 
 namespace Api.Business
 {
-    public class Questão5Business
+    public class Questao5Business
     {
-        Database.Questão5Database db = new Database.Questão5Database();
+        Database.Questao5Database db = new Database.Questao5Database();
         public List<Models.TbFilme> ConsultaCompletaBusiness (string nome)
         {
             if(String.IsNullOrEmpty(nome))

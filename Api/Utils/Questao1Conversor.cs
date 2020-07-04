@@ -6,16 +6,16 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 
-
+ 
 namespace Api.Utils
 {
-    public class Questão1Conversor
+    public class Questao1Conversor
     {
-        public List<Models.TbFilme> ParaFilme(List<Models.Request.Questão1Request> req)
+        public List<Models.TbFilme> ParaFilme(List<Models.Request.Questao1Request> req)
         {
             List<Models.TbFilme> filmes = new List<Models.TbFilme>();
 
-            foreach(Models.Request.Questão1Request item in req)
+            foreach(Models.Request.Questao1Request item in req)
             {
                 Models.TbFilme filme = new Models.TbFilme();
                 filme.NmFilme = item.Filme;
@@ -30,14 +30,14 @@ namespace Api.Utils
             return filmes;
         } 
     
-        public List<Models.Response.Questão1Response> ParaResponse(List<Models.TbFilme> filme)
+        public List<Models.Response.Questao1Response> ParaResponse(List<Models.TbFilme> filme)
         {
-            List<Models.Response.Questão1Response> response = new List<Models.Response.Questão1Response>();
+            List<Models.Response.Questao1Response> response = new List<Models.Response.Questao1Response>();
 
 
             foreach(Models.TbFilme item in filme)
             {
-                Models.Response.Questão1Response resp = new Models.Response.Questão1Response();
+                Models.Response.Questao1Response resp = new Models.Response.Questao1Response();
                 resp.Id = item.IdFilme;
                 resp.Filme = item.NmFilme;
                 resp.Genero = item.DsGenero;

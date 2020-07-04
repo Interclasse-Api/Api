@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Api.Database
 {
-    public class Questão3Database
+    public class Questao3Database
     {
         Models.apidbContext ctx = new Models.apidbContext();
          public Models.TbDiretor ConsultarDiretorPorNome(string nome)

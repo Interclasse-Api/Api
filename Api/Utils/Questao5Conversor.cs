@@ -1,15 +1,15 @@
 using System.Linq;
 
-
+ 
 namespace Api.Utils
 {
-    public class Questão5Conversor
+    public class Questao5Conversor
     {
-        public Models.Response.Questão5Response.FilmeCompleto ParaResponse (Models.TbFilme filme)
+        public Models.Response.Questao5Response.FilmeCompleto ParaResponse (Models.TbFilme filme)
         {
-            Models.Response.Questão5Response.FilmeCompleto resp = new Models.Response.Questão5Response.FilmeCompleto();
+            Models.Response.Questao5Response.FilmeCompleto resp = new Models.Response.Questao5Response.FilmeCompleto();
 
-            resp.Filme = new Models.Response.Questão5Response.Filme();
+            resp.Filme = new Models.Response.Questao5Response.Filme();
 
             resp.Filme.Nome = filme.NmFilme;
             resp.Filme.Genero = filme.DsGenero;
@@ -20,7 +20,7 @@ namespace Api.Utils
 
             if (filme.TbDiretor.Count > 0 )
             {
-                resp.diretor = new Models.Response.Questão5Response.Diretor()
+                resp.diretor = new Models.Response.Questao5Response.Diretor()
                 {
                     nome = filme.TbDiretor.FirstOrDefault().NmDiretor,
                     nascimento = filme.TbDiretor.FirstOrDefault().DtNascimento
@@ -29,7 +29,7 @@ namespace Api.Utils
 
 
             resp.elenco = 
-            filme.TbFilmeAtor.Select( x => new Models.Response.Questão5Response.Elenco()
+            filme.TbFilmeAtor.Select( x => new Models.Response.Questao5Response.Elenco()
             {
                 ator = x.IdAtorNavigation.NmAtor,
                 altura = x.IdAtorNavigation.VlAltura,

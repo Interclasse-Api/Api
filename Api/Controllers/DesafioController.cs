@@ -10,40 +10,40 @@ namespace Api.Controllers
     [Route("[Controller]")]
     public class DesafioController : ControllerBase
     {
-        Utils.Questão1Conversor conv = new Utils.Questão1Conversor();
-        Utils.Questão2Conversor conv2 = new Utils.Questão2Conversor();
-        Utils.Questão3Conversor conv3 = new Utils.Questão3Conversor();
-        Utils.Questão4Conversor conv4 = new Utils.Questão4Conversor();
-        Utils.Questão5Conversor conv5 = new Utils.Questão5Conversor();
-        Utils.Questão6Conversor conv6 = new Utils.Questão6Conversor();
+        Utils.Questao1Conversor conv = new Utils.Questao1Conversor();
+        Utils.Questao2FilmeCompletoConverter conv2 = new Utils.Questao2FilmeCompletoConverter();
+        Utils.Questao3Conversor conv3 = new Utils.Questao3Conversor();
+        Utils.Questao4Conversor conv4 = new Utils.Questao4Conversor();
+        Utils.Questao5Conversor conv5 = new Utils.Questao5Conversor();
+        Utils.Questao6Conversor conv6 = new Utils.Questao6Conversor();
 
-        Business.Questão1Business busi = new Business.Questão1Business();
-        Business.Questão2Business busi2 = new Business.Questão2Business();
-        Business.Questão3Business busi3 = new Business.Questão3Business();
-        Business.Questão4Business busi4 = new Business.Questão4Business();
-        Business.Questão5Business busi5 = new Business.Questão5Business();
-        Business.Questão6Business busi6 = new Business.Questão6Business();
+        Business.Questao1Business busi = new Business.Questao1Business();
+        Business.Questao2Business busi2 = new Business.Questao2Business();
+        Business.Questao3Business busi3 = new Business.Questao3Business();
+        Business.Questao4Business busi4 = new Business.Questao4Business();
+        Business.Questao5Business busi5 = new Business.Questao5Business();
+        Business.Questao6Business busi6 = new Business.Questao6Business();
 
         [HttpPost("muitosfilmes")]
-        public ActionResult<List<Models.Response.Questão1Response>> Inserir(List<Models.Request.Questão1Request> req)
+        public ActionResult<List<Models.Response.Questao1Response>> Inserir(List<Models.Request.Questao1Request> req)
         {
             try
             {
                List<Models.TbFilme> filme = conv.ParaFilme(req);
                filme = busi.Inserir(filme);
-               List<Models.Response.Questão1Response> resp = conv.ParaResponse(filme);
+               List<Models.Response.Questao1Response> resp = conv.ParaResponse(filme);
                return resp;
             }
             catch (System.Exception ex)
             {
                 return new BadRequestObjectResult(
-                    new Models.Response.ErroResponse(404, ex.Message)
+                    new Models.Response.ErroResponse(400, ex.Message)
                 );
             }
         }
-        [HttpPost("filmeCompleto")]
 
-        public ActionResult<Models.Response.Questão2Response.Questao2Response> InserirFilmeCompleto (Models.Request.Questão2Request.Questao2Request req)
+        [HttpPost("filmeCompleto")]
+        public ActionResult<Models.Response.Questao2FinalResponse> InserirFilmeCompleto (Models.Response.Questao2FinalResponse req)
         {
             try 
             {
@@ -55,14 +55,14 @@ namespace Api.Controllers
             }
             catch (System.Exception ex)
             {
-                return new BadRequestObjectResult(
-                    new Models.Response.ErroResponse(404, ex.Message)
+                return BadRequest(
+                    new Models.Response.ErroResponse(400, ex.Message)
                );
             }
         }
 
         [HttpPut("indisponibilizar")]
-        public ActionResult<List<int>> Invalidar(Models.Request.Questão3Request req)
+        public ActionResult<List<int>> Invalidar(Models.Request.Questao3Request req)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace Api.Controllers
         }
 
         [HttpDelete("personagens")]
-        public ActionResult<Models.Response.Questão4Response.PersonagemResponse> DeletarPersonagens(Models.Request.Questão4Request.PersonagemRequest req)
+        public ActionResult<Models.Response.Questao4Response.PersonagemResponse> DeletarPersonagens(Models.Request.Questao4Request.PersonagemRequest req)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace Api.Controllers
                 List<int> personagensIds = busi4.ConsultarPersonagensIds(req.Personagens);
                 personagensIds = busi4.RemoverPersonagens(filmeId, personagensIds);
 
-                Models.Response.Questão4Response.PersonagemResponse resp = conv4.ParaPersonagemResponse(filmeId, personagensIds);
+                Models.Response.Questao4Response.PersonagemResponse resp = conv4.ParaPersonagemResponse(filmeId, personagensIds);
                 return resp;
 
             }
@@ -107,7 +107,7 @@ namespace Api.Controllers
         }
 
          [HttpGet("ConsultarFilme")]
-        public ActionResult<List<Models.Response.Questão5Response.FilmeCompleto>> ConsultarFilmeCompleto(string nome)
+        public ActionResult<List<Models.Response.Questao5Response.FilmeCompleto>> ConsultarFilmeCompleto(string nome)
         {
             try
             {
@@ -124,7 +124,7 @@ namespace Api.Controllers
             
         }
         [HttpGet("consultarAtores")]
-        public ActionResult<List<Models.Response.Questão6Response.Questao6Response>> ConsultarFilmeAtor(string nome)
+        public ActionResult<List<Models.Response.Questao6Response.Questao6FinalResponse>> ConsultarFilmeAtor(string nome)
         {
             try
             {
@@ -132,7 +132,7 @@ namespace Api.Controllers
                 if(atores.Count == 0)
                     return NotFound(null);
 
-                List<Models.Response.Questão6Response.Questao6Response> resp = conv6.ParaQuestao6Response(atores);
+                List<Models.Response.Questao6Response.Questao6FinalResponse> resp = conv6.ParaQuestao6Response(atores);
                 return resp;
             }
             catch (System.Exception e)

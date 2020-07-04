@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 
-
+ 
 namespace Api.Models.Response
 {
-    public class Questão4Response
+    public class Questao4Response
     {
         public class PersonagemResponse
         {

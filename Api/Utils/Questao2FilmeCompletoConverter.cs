@@ -1,19 +1,29 @@
+using System.Collections.Generic;
 using System.Linq;
-
 
 namespace Api.Utils
 {
-    public class Questão2Conversor
+    public class Questao2FilmeCompletoConverter
     {
-         public Models.TbFilme ParaTbFilmeCompleto (Models.Request.Questão2Request.Questao2Request req)
+        public Models.TbFilme ParaTbFilmeCompleto (Models.Response.Questao2FinalResponse req)
         {
             Models.TbFilme filme = new Models.TbFilme();
+
             filme.NmFilme = req.Filme.Nome;
             filme.DsGenero = req.Filme.Genero;
             filme.NrDuracao = req.Filme.Duracao;
             filme.VlAvaliacao = req.Filme.Avaliacao;
             filme.BtDisponivel = req.Filme.Disponivel;
             filme.DtLancamento = req.Filme.Lancamento;
+
+            filme.TbDiretor = new List<Models.TbDiretor>()
+            {
+                new Models.TbDiretor() 
+                {
+                    NmDiretor = req.Diretor.Nome,
+                    DtNascimento = req.Diretor.Nascimento 
+                }
+            }; 
 
             filme.TbFilmeAtor = 
                 req.Elenco.Select( x => new Models.TbFilmeAtor()
@@ -28,13 +38,15 @@ namespace Api.Utils
                     }
                 }).ToList();
 
+
             return filme;
         }
-        public Models.Response.Questão2Response.Questao2Response ParaResponse (Models.TbFilme filme)
+
+        public Models.Response.Questao2FinalResponse ParaResponse (Models.TbFilme filme)
         {
-            Models.Response.Questão2Response.Questao2Response resp = new Models.Response.Questão2Response.Questao2Response();
+            Models.Response.Questao2FinalResponse resp = new Models.Response.Questao2FinalResponse();
 
-
+            resp.Filme = new Models.Response.Questao2FilmeResponse();
             resp.Filme.ID = filme.IdFilme;
             resp.Filme.Nome = filme.NmFilme;
             resp.Filme.Genero = filme.DsGenero;
@@ -43,20 +55,19 @@ namespace Api.Utils
             resp.Filme.Duracao = filme.NrDuracao;
             resp.Filme.Lancamento = filme.DtLancamento;
 
-
-            foreach(Models.TbDiretor item in filme.TbDiretor)
+            if (filme.TbDiretor.Count > 0 )
             {
-                new Models.Response.Questão2Response.Questao2DiretorResponse()
+                resp.Diretor = new Models.Response.Questao2DiretorResponse()
                 {
-                    ID = item.IdDiretor,
-                    Nome = item.NmDiretor,
-                    Nascimento = item.DtNascimento
+                    ID = filme.TbDiretor.FirstOrDefault().IdDiretor,
+                    Nome = filme.TbDiretor.FirstOrDefault().NmDiretor,
+                    Nascimento = filme.TbDiretor.FirstOrDefault().DtNascimento
                 };
-            }
+            };
 
 
             resp.Elenco = 
-                filme.TbFilmeAtor.Select( x => new Models.Response.Questão2Response.Questao2AtorResponse()
+                filme.TbFilmeAtor.Select( x => new Models.Response.Questao2AtorResponse()
                 {
                     ID = x.IdAtor,
                     Ator = x.IdAtorNavigation.NmAtor,

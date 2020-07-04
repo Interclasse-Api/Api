@@ -1,17 +1,17 @@
 using System;
 using System.Linq;
-using System.Collections.Generic;
-
 
 namespace Api.Business
 {
-    public class Questão2Business
+    public class Questao2Business
     {
-        Database.Questão2Database db = new Database.Questão2Database();
+        Database.Questao2Database db = new Database.Questao2Database();
 
 
         public Models.TbFilme InserirFilmeCompleto (Models.TbFilme filme)
         {
+            if(db.FilmeExiste(filme.NmFilme))
+                throw new ArgumentException("Esse filme já existe.");
             if (string.IsNullOrEmpty(filme.NmFilme))
                 throw new ArgumentNullException("Nome do filme é obrigatório");
             if (string.IsNullOrEmpty(filme.DsGenero))
@@ -31,7 +31,7 @@ namespace Api.Business
                 if(diretor.DtNascimento == DateTime.MinValue)
                     throw new ArgumentNullException("Data do diretor inválida.");
             });
-filme.TbFilmeAtor.ToList().ForEach (persona =>
+            filme.TbFilmeAtor.ToList().ForEach (persona =>
             {
                 if(string.IsNullOrEmpty(persona.IdAtorNavigation.NmAtor))
                     throw new ArgumentNullException("Nome do personagem é obrigatório.");

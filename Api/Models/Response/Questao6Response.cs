@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-
+ 
 namespace Api.Models.Response
 {
-    public class Questão6Response
+    public class Questao6Response
     {
         public class Questao6AtorResponse
     {
@@ -34,7 +34,7 @@ namespace Api.Models.Response
         public Questao6PersonagemResponse Personagem { get; set; }
     }
 
-    public class Questao6Response
+    public class Questao6FinalResponse
     {
         public Questao6AtorResponse Ator { get; set; }
 

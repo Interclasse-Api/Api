@@ -24,7 +24,7 @@ namespace Api.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("server=localhost;user id=root;password=diego06171825;database=apidb", x => x.ServerVersion("8.0.19-mysql"));
+                optionsBuilder.UseMySql("server=localhost;user id=root;password=GustavoA01;database=apidb", x => x.ServerVersion("8.0.19-mysql"));
             }
         }
 

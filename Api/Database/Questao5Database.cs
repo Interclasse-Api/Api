@@ -2,10 +2,10 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-
+ 
 namespace Api.Database
 {
-    public class Questão5Database
+    public class Questao5Database
     {
         Models.apidbContext ctx = new Models.apidbContext();
         public List<Models.TbFilme> ConsultarFilmeCompleto(string nome)

@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+ 
 namespace Api.Models.Request
 {
-    public class Questão1Request
+    public class Questao1Request
     {
         public string Filme { get; set; }
         public string Genero { get; set; }

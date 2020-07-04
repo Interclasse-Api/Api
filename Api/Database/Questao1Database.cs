@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Database
 {
-    public class Questão1Database
+    public class Questao1Database
     {
          Models.apidbContext ctx = new Models.apidbContext();
 

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace Api.Business
 {
-    public class Questão1Business
+    public class Questao1Business
     {
-        Database.Questão1Database db = new Database.Questão1Database();
+        Database.Questao1Database db = new Database.Questao1Database();
 
         public List<Models.TbFilme> Inserir(List<Models.TbFilme> filme)
         {
