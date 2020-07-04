@@ -106,7 +106,7 @@ namespace Api.Controllers
 
         }
 
-         [HttpGet("ConsultarFilme")]
+         [HttpGet("consultarFilme")]
         public ActionResult<List<Models.Response.Questao5Response.FilmeCompleto>> ConsultarFilmeCompleto(string nome)
         {
             try
